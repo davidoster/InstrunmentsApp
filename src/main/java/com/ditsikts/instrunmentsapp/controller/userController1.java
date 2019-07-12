@@ -78,9 +78,15 @@ public class userController1 {
         model.addAttribute("brand", b);
         return "brandview";
     }
+    
     @RequestMapping(method = RequestMethod.GET)
     public String showIndex(ModelMap model) {
         return "index2";
+    }
+    
+    @RequestMapping(value= "/login", method = RequestMethod.GET)
+    public String login(ModelMap model) {
+        return "login";
     }
     
 }

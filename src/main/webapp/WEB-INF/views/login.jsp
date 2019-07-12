@@ -1,107 +1,55 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ page session="false" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<html>
-    <head>
-       
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to login</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
-        <link href="<c:url value='/static/css/uikit.css' />" rel="stylesheet"></link>
-        <link href="<c:url value='/static/css/uikit-rtl.css' />" rel="stylesheet"></link>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<link href="https://fonts.googleapis.com/css?family=Audiowide&amp;display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
+    <title>Log in with your account</title>
 
-    </head>
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
 
-    <body>
-        <div>
-            <div>
-                <nav id= "navbar" class="uk-navbar-container tm-navbar-container" uk-navbar>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
 
-                    <div class="uk-navbar-left">
-                        <a class="logo uk-link-reset" href="<c:url value='/' />"></a>
+<body>
 
-                    </div>
-                    <div class="uk-navbar-right">
+<div class="container">
 
-                        <ul class="uk-navbar-nav">
+    <form method="POST" action="${contextPath}/login" class="form-signin">
+        <h2 class="form-heading">Log in</h2>
 
-                           
+        <div class="form-group ${error != null ? 'has-error' : ''}">
+            <span>${message}</span>
+            <input name="username" type="text" class="form-control" placeholder="Username"
+                   autofocus="true"/>
+            <input name="password" type="password" class="form-control" placeholder="Password"/>
+            <span>${error}</span>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-                        </ul>
-
-                    </div>
-            </div>
-        </nav>
-
-        <div class="uk-section uk-section-small uk-section-muted ">
-            <div class="uk-container uk-container-expand">
-
-                <h3></h3>
-
-                <div class="uk-grid-match  uk-height-1-1" uk-grid>
-                    <div >
-                        <p></p>
-                    </div>
-                    <div class="uk-height-1-1 uk-align-center   ">
-                        <h1 class="uk-heading-medium uk-text-center ">Welcome to login page </h1>
-                        <p class="uk-text-center uk-text-lead ">Log in to connect to Music Shop Admin page </p>
-
-                        <div class="uk-text-center">
-                         
-                            <form action="trainers" class=" uk-text-center " action="" >
-
-                                <div class="uk-margin uk-text-center">
-
-                                    <div class="uk-inline uk-text-center">
-                                        <span class="uk-form-icon" uk-icon="icon: user" placeholder="username"></span>
-                                        <input class="uk-input" type="text">
-                                    </div>
-                                </div>
-
-                                <div class="uk-margin">
-                                    <div class="uk-inline">
-                                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"    placeholder="password"></span>
-                                        <input type="password"  class="uk-input" type="text">
-                                    </div>
-                                </div>
-
-                                <div class="uk-margin">
-                                    <div class="uk-inline">
-                                        <input class="uk-input uk-form-width-small uk-button uk-button-primary   " id="form-horizontal-text" type="Submit" value="Log in" >
-                                    </div>
-                                </div>
-
-                            </form>
-<c:url var="addAction" value="/trainers" ></c:url>
-                        </div>
-                    </div>
-                    <div>
-                        <p></p>
-                    </div>
-                </div>
-            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+            <h4 class="text-center"><a href="${contextPath}/registration">Create an account</a></h4>
         </div>
 
+    </form>
 
-
-
-    </div>
-    <script src="js/uikit.js"></script>
-    <script src="js/uikit-icons.js"></script>
-    <script src="jQuery/localjQuery.js"></script>
-    <script src="ajax/a.js"></script>
+</div>
+<!-- /container -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
